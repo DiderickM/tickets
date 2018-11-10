@@ -37,7 +37,7 @@ if (!isset($_COOKIE['klas'])) {
     $sql = "INSERT INTO tickets (ticket, naam, klas) VALUES (0, 'Started', '$code')";
 
     if ($conn->query($sql)) {
-        echo '<center><h1 style="font-size:100px; margin-top: 20%;">Code: ' . $code . '</h1></center>';
+        echo '<center><h1 style="font-size:100px; margin-top: 15%;">Code: ' . $code . '</h1></center>';
         $sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
         $result = $conn->query($sql);
 
@@ -45,7 +45,7 @@ if (!isset($_COOKIE['klas'])) {
             while($row = $result->fetch_assoc()) {
                 setcookie('klas', $nowValue, time() + 300, "/");
                 echo '<center><h1 style="font-size:100px; margin-top: 20px;">Aan de beurt: ' . $nowValue . ': ' . $row['naam'] . '</h1><br>';
-                echo '<input type="button" value="Refresh Page" onClick="window.location.reload()"></center>';
+                echo '<input class="btn purple" type="button" value="Refresh Page" onClick="window.location.reload()"></center>';
             }
         } else {
             $nowValue -= 1;

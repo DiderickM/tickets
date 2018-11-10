@@ -8,10 +8,20 @@
     <link type="text/css" rel="stylesheet" href="main.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
+    <style>
+        .same {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+    </style>
 <body>
 <div class="center">
     <form action="bord.php" method="post">
-        <input class="btn green" type="submit" value="Create!">
+        <div class="same">
+            <input class="btn green" type="submit" value="Create!">
+            <a href="index.html" class="btn red">Terug</a>
+        </div>
     </form>
 </div>
 </body>

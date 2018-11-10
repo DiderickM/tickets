@@ -27,19 +27,23 @@
             <!--<input type="text" name="naam" placeholder="Johan"><br>-->
 
             <div class="pos input-effect">
-                <input name="code" class="input effect" type="text" placeholder="">
+                <input name="naam" class="input effect" type="text" placeholder="">
                 <label>Naam</label>
                 <span class="focus-border"></span>
             </div>
-
-            <input class="btn blue" type="submit" value="Kijg ticket">
+            <div class="btncenter">
+                <input style="width: 100%" class="btn blue" type="submit" value="Join!"><br>
+                <a href="index.html" class="btn red">Terug</a>
+            </div>
         </form>
     </div>
 </body>
 </html>
 <script>
-	$(window).load(function(){
-		$(".pos input").val("");
+     
+    $(window).load(function(){
+       
+		$("pos input").val("");
 		
 		$(".input-effect input").focusout(function(){
 			if($(this).val() != ""){
@@ -49,5 +53,4 @@
 			}
 		})
 	});
-
 </script>

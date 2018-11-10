@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" rel="stylesheet" href="main.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 </head>
 <style>
 :focus{outline: none;}
@@ -67,6 +68,11 @@
     color: #3399FF;
     transition: 0.3s;
 }
+
+    .btncenter{
+        position: relative;
+        display: flex
+    }
     
 </style>
 
@@ -83,12 +89,13 @@
             <!--<input type="text" name="naam" placeholder="Johan"><br>-->
 
             <div class="pos input-effect">
-                <input name="code" class="input effect" type="text" placeholder="">
+                <input name="naam" class="input effect" type="text" placeholder="">
                 <label>Naam</label>
                 <span class="focus-border"></span>
             </div>
-
-            <input class="btn blue" type="submit" value="Kijg ticket">
+            <div class="btncenter">
+                <input style="width: 100%" class="btn blue" type="submit" value="Kijg ticket">
+            </div>
         </form>
     </div>
 </body>
@@ -102,7 +109,6 @@
 		$(".input-effect input").focusout(function(){
 			if($(this).val() != ""){
 				$(this).addClass("has-content");
-                window.alert("test");
 			}else{
 				$(this).removeClass("has-content");
 			}
