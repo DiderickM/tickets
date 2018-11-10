@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tickets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+</head>
 <?php
 
 function generateRandomString($length) {
@@ -46,7 +56,7 @@ if (!isset($_COOKIE['klas'])) {
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     echo '<center><h1 style="font-size:100px; margin-top: 20px;">Aan de beurt: ' . $nowValue . ': ' . $row['naam'] . '</h1><br>';
-                    echo '<input type="button" value="Refresh Page" onClick="window.location.reload()"></center>';
+                    echo '<input class="btn purple" type="button" value="Refresh Page" onClick="window.location.reload()"></center>';
                 }
             }
         }
