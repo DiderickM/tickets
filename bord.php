@@ -6,10 +6,10 @@
     <title>Tickets</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" rel="stylesheet" href="main.css">
+    <link type="text/css" rel="stylesheet" href="tickets.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
 <?php
-
 function generateRandomString($length) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
@@ -37,15 +37,12 @@ if (!isset($_COOKIE['klas'])) {
     $sql = "INSERT INTO tickets (ticket, naam, klas) VALUES (0, 'Started', '$code')";
 
     if ($conn->query($sql)) {
-        echo '<center><h1 style="font-size:100px; margin-top: 15%;">Code: ' . $code . '</h1></center>';
         $sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 setcookie('klas', $nowValue, time() + 300, "/");
-                echo '<center><h1 style="font-size:100px; margin-top: 20px;">Aan de beurt: ' . $nowValue . ': ' . $row['naam'] . '</h1><br>';
-                echo '<input class="btn purple" type="button" value="Refresh Page" onClick="window.location.reload()"></center>';
             }
         } else {
             $nowValue -= 1;
@@ -55,13 +52,49 @@ if (!isset($_COOKIE['klas'])) {
 
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    echo '<center><h1 style="font-size:100px; margin-top: 20px;">Aan de beurt: ' . $nowValue . ': ' . $row['naam'] . '</h1><br>';
-                    echo '<input class="btn purple" type="button" value="Refresh Page" onClick="window.location.reload()"></center>';
+                    $name = $row['naam'];
                 }
             }
         }
     } else {
         echo "Houston, we got a problem";
     }
-
 ?>
+
+<div class="ticket">
+  <div class="stub">
+    <div class="top">
+      <span class="admit">Nummer</span>
+      <span class="line"></span>
+      <span class="num">
+        Invitation
+        <span>31415926</span>
+      </span>
+    </div>
+    <div class="number"><?php echo $nowValue ?></div>
+  </div>
+  <div class="check">
+    <div class="big">
+      Klas Code: <br><span><?php echo $code?></span>
+    </div>
+    <div class="number"><?php echo $nowValue ?></div>
+    <div class="info">
+        <section>
+            <div class="title">Date</div>
+            <div><?php echo date("d.m.y")?></div>
+        </section>
+        <section>
+            <div class="title">Naam</div>
+            <div><?php echo $name ?></div>
+        </section>
+        <section>
+            <div class="title"></div>
+            <input id="refresh" class="btn yellow" type="button" value="Volgende" onClick="window.location.reload()" style="margin: 0px; font-size: 1 em; padding: .8em 2em .8em 2em;">
+        </section>
+   </div>
+  </div>
+</div>
+<div class="center">
+    <a href="index.html" style=""class="btn orange">Terug</a>
+    <input id="refresh" class="btn yellow" type="button" value="Volgende" onClick="window.location.reload()">
+</div>
