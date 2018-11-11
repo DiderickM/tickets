@@ -98,3 +98,9 @@ if (!isset($_COOKIE['klas'])) {
     <a href="index.html" style=""class="btn orange">Terug</a>
     <input id="refresh" class="btn yellow" type="button" value="Volgende" onClick="window.location.reload()">
 </div>
+<script>
+    var html = document.getElementsByTagName('html')[0];
+    html.style.WebkitTransition = "all 2s";
+    
+    html.animate(html.style.cssText = "--main-bg-color: purple";);
+</script>

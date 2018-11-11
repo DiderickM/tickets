@@ -8,13 +8,6 @@
     <link type="text/css" rel="stylesheet" href="main.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
-    <style>
-        .same {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-    </style>
 <body>
 <div class="center">
     <form action="bord.php" method="post">
