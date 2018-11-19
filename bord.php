@@ -34,6 +34,10 @@ if (!isset($_COOKIE['klas'])) {
     $code = $_COOKIE['code'];
 }
 
+if (isset($_POST['terug'])) {
+    $code -= 1;
+}
+
     $sql = "INSERT INTO tickets (ticket, naam, klas) VALUES (0, 'Started', '$code')";
 
     if ($conn->query($sql)) {
@@ -95,7 +99,7 @@ if (!isset($_COOKIE['klas'])) {
   </div>
 </div>
 <div class="center">
-    <a href="index.html" style=""class="btn orange">Terug</a>
+    <form action="bord.php" method="post"><input type="submit" value="btn red" name="terug">Terug</form>
     <input id="refresh" class="btn yellow" type="button" value="Volgende" onClick="window.location.reload()">
 </div>
 <script>
