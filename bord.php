@@ -35,7 +35,7 @@ if (!isset($_COOKIE['klas'])) {
 }
 
 if (isset($_POST['terug'])) {
-    $code -= 1;
+    $klas -= 1;
 }
 
     $sql = "INSERT INTO tickets (ticket, naam, klas) VALUES (0, 'Started', '$code')";
