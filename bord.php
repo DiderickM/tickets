@@ -99,7 +99,7 @@ if (isset($_POST['terug'])) {
   </div>
 </div>
 <div class="center">
-    <form action="bord.php" method="post"><input type="submit" value="btn red" name="terug">Terug</form>
+    <form action="bord.php" method="post"><input type="submit" class="btn red" name="terug" value="Terug"></form>
     <input id="refresh" class="btn yellow" type="button" value="Volgende" onClick="window.location.reload()">
 </div>
 <script>
