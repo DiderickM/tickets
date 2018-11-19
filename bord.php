@@ -47,7 +47,8 @@ if (!isset($_COOKIE['klas'])) {
         } else {
             $nowValue -= 1;
             setcookie('klas', $nowValue, time() + 300, "/");
-            $sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
+        }
+        $sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -55,7 +56,6 @@ if (!isset($_COOKIE['klas'])) {
                     $name = $row['naam'];
                 }
             }
-        }
     } else {
         echo "Houston, we got a problem";
     }
