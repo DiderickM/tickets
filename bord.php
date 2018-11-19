@@ -29,11 +29,7 @@ if (!isset($_COOKIE['klas'])) {
     setcookie('klas', $nowValue, time() + 7200, "/");
     setcookie('code', $code, time() + 7200, "/");
 } else {
-    if (isset($_POST['terug'])) {
-        $nowValue -= 1;
-    } else {
-        $nowValue = $_COOKIE['klas'] + 1;
-    }
+    $nowValue = $_COOKIE['klas'] + 1;
     setcookie('klas', $nowValue, time() + 7200, "/");
     $code = $_COOKIE['code'];
 }
