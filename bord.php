@@ -29,7 +29,11 @@ if (!isset($_COOKIE['klas'])) {
     setcookie('klas', $nowValue, time() + 7200, "/");
     setcookie('code', $code, time() + 7200, "/");
 } else {
-    $nowValue = $_COOKIE['klas'] + 1;
+    if (isset($_POST['terug'])) {
+        $nowValue -= 1;
+    } else {
+        $nowValue = $_COOKIE['klas'] + 1;
+    }
     setcookie('klas', $nowValue, time() + 7200, "/");
     $code = $_COOKIE['code'];
 }
@@ -37,10 +41,6 @@ if (!isset($_COOKIE['klas'])) {
     $sql = "INSERT INTO tickets (ticket, naam, klas) VALUES (0, 'Started', '$code')";
 
     if ($conn->query($sql)) {
-
-        if (isset($_POST['terug'])) {
-            $nowValue -= 1;
-        }
 
         $sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
         $result = $conn->query($sql);
