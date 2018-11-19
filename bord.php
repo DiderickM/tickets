@@ -34,13 +34,14 @@ if (!isset($_COOKIE['klas'])) {
     $code = $_COOKIE['code'];
 }
 
-if (isset($_POST['terug'])) {
-    $nowValue -= 1;
-}
-
     $sql = "INSERT INTO tickets (ticket, naam, klas) VALUES (0, 'Started', '$code')";
 
     if ($conn->query($sql)) {
+
+        if (isset($_POST['terug'])) {
+            $nowValue -= 1;
+        }
+
         $sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
         $result = $conn->query($sql);
 
