@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "didervr261_tickets";
-$password = "geentickets";
+$password = "echtgeentickets";
 $dbname = "didervr261_tickets";
 
 // Create connection

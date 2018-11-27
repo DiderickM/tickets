@@ -33,7 +33,7 @@
             </div>
             <div class="btncenter">
                 <input style="width: 100%" class="btn blue" type="submit" value="Join!"><br>
-                <a href="index.html" class="btn red">Terug</a>
+                <a href="../" class="btn red">Terug</a>
             </div>
         </form>
     </div>
