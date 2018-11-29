@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" class="wrapper">
 <head>
 <!-- Hotjar Tracking Code for https://skiffle.nl -->
 <script>
@@ -18,6 +18,7 @@
     <title>Tickets</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
+    <link type="text/css" rel="stylesheet" href="../css/rainbow.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
 <?php
@@ -25,7 +26,7 @@
 include_once('../conn.php');
 
 if (isset($_COOKIE['value'])) {
-    echo '<center><h1 style="font-size:100px; margin-top: 20%;">Je bent nummer ' . $_COOKIE['value'] . '!</h1></center>';
+    echo '<center><h1 style="color: white;font-size:100px; margin-top: 20%;">Je bent nummer ' . $_COOKIE['value'] . '!</h1></center>';
 } else {
     if (isset($_POST['code']) && isset($_POST['naam'])) {
         $code = $_POST['code'];
