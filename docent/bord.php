@@ -35,7 +35,36 @@
     $( document ).ready(function() {
         console.log( "ready!" );
         list();
-    });
+        
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+    function loadData()
+        {
+            x = 1;  // 5 Seconds
+            var klasCode = readCookie('code');
+                    $.ajax({
+                        type: "GET",
+                        url: "getvalue.php",
+                        data: "code="+klasCode,
+                        cache: false,
+                        success: function(data){
+                            console.log(data);
+                        }
+                    });
+            setTimeout(refreshData, x*1000);
+        }
+    loadData(); // execute function
+
+        
+});
     </script>
 </head>
 <?php
@@ -51,10 +80,6 @@ function generateRandomString($length) {
 
 include_once('../conn.php');
 
-function codetaken($code){ //cheks if code is already taken
-    $sql = "SELECT ";
-}
-
 
 if (!isset($_COOKIE['klas'])) {
     $nowValue = 1;
@@ -66,8 +91,8 @@ if (!isset($_COOKIE['klas'])) {
     setcookie('klas', $nowValue, time() + 7200, "/");
     $code = $_COOKIE['code'];
 }
-
-    $sql = "INSERT INTO tickets (ticket, naam, klas) VALUES (0, 'Started', '$code')";
+    $datum = date("Y-m-d h:i:sa");
+    $sql = "INSERT INTO tickets (ticket, naam, klas, datum) VALUES (0, 'Started', '$code', '$datum')";
 
     if ($conn->query($sql)) {
 
@@ -184,3 +209,10 @@ if (!isset($_COOKIE['klas'])) {
     <a class="btn red" href="../">Terug</a>
     <input id="refresh" class="btn yellow" type="button" value="Volgende" onClick="window.location.reload()">
 </div>
+<script>
+
+
+
+
+
+</script>
