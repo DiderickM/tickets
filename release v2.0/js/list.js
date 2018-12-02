@@ -7,7 +7,7 @@ function list(){
     var total = sortables.length;
 
     TweenLite.to(container, 0.5, { autoAlpha: 1 });
-
+/*
     function changeIndex(item, to) {
 
         // Change position in array
@@ -25,7 +25,7 @@ function list(){
             sortables.forEach(function (sortable, index) {return sortable.setIndex(index);});
             console.log(sortables);
     }
-
+*/
     function Sortable(element, index) {
 
         var content = element.querySelector(".item-content");
@@ -36,8 +36,7 @@ function list(){
         force3D: true,
         scale: 1.1,
         paused: true });
-
-
+/*
         var dragger = new Draggable(element, {
         onDragStart: downAction,
         onRelease: upAction,
@@ -45,14 +44,13 @@ function list(){
         cursor: "inherit",
         type: "y" });
 
-
         // Public properties and methods
         var sortable = {
         dragger: dragger,
         element: element,
         index: index,
         setIndex: setIndex };
-
+*/
 
         TweenLite.set(element, { y: index * rowSize });
 
@@ -64,7 +62,7 @@ function list(){
         // Don't layout if you're dragging
         if (!dragger.isDragging) layout();
         }
-
+/*
         function downAction() {
             animation.play();
             this.update();
@@ -84,12 +82,12 @@ function list(){
             animation.reverse();
             layout();
         }
-
+*/
         function layout() {
             TweenLite.to(element, 0.3, { y: sortable.index * rowSize });
         }
 
-        return sortable;
+        //return sortable;
     }
 
     // Changes an elements's position in array

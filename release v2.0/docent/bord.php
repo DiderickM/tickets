@@ -170,6 +170,7 @@ function leerlingnummer(x){
             console.log(leerlingnum);
             eraseCookie("Leerlingnum");
             createCookie("Leerlingnum", leerlingnum);
+            
         }
     } else {
         createCookie("Leerlingnum", 0);
