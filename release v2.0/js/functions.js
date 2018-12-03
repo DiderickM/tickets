@@ -1,6 +1,7 @@
 $( ).ready(function() {
-    //global 
+    //global
     oldArray = [];
+    arrayRobin = [];
     //hier houdt global op
 
     //we hebben het bestand geladen
@@ -51,22 +52,22 @@ function displayList(data) {
             while (list.firstChild) {
                 list.removeChild(list.firstChild);
             }
-            for (var i = 0; i < data.length; i = i + 2) { 
+            for (var i = 0; i < data.length; i = i + 2) {
                 var nummer = data[i]
                 var naam = data[i + 1];
                 console.log("Nummer :" +  nummer + "Naam :" + naam);
                 var entry = document.createElement("div");
                 entry.setAttribute('class', 'list-item');
-                
+
                 var entryTwo = document.createElement("div");
                 entryTwo.setAttribute('class', 'item-content');
-                
+
                 var entryThree = document.createElement("span");
                 entryThree.setAttribute('class', 'order');
                 entryThree.appendChild(document.createTextNode(nummer));
-                
+
                 var text = document.createTextNode("    " + naam);
-            
+
                 entryTwo.appendChild(entryThree);
                 entryTwo.appendChild(text);
                 entry.appendChild(entryTwo);
@@ -77,7 +78,7 @@ function displayList(data) {
         return true;
 }
 
-//ajax haal data op 
+//ajax haal data op
 function loadData(){
         var klasCode = readCookie('code');
                 $.ajax({
@@ -87,6 +88,7 @@ function loadData(){
                     cache: false,
                     success: function(data){
                         var data = data.split(',');
+                        arrayRobin = data;
                         //verwijs naar de functie processData deze besluit wat er met de data gebeurt
                         if(processData(data)){
                             //de functies in processData hebben elementen gemaakt, maar deze moeten nog visueel worden verwerkt

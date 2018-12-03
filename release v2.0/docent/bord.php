@@ -113,7 +113,7 @@ if (!isset($_COOKIE['klas'])) {
         </section>
         <section>
             <div class="title"></div>
-            <input id="refresh" class="btn yellow" type="button" value="Volgende" onClick="window.location.reload()" style="margin: 0px; font-size: 1 em; padding: .8em 2em .8em 2em;">
+            <input class="btn yellow" type="button" value="Volgende" style="margin: 0px; font-size: 1 em; padding: .8em 2em .8em 2em;">
         </section>
    </div>
   </div>
@@ -162,12 +162,15 @@ function leerlingnummer(x){
     //er is een leerlingnummer
         var leerlingnum = parseInt(readCookie("Leerlingnum"));
         leerlingnum = leerlingnum + x;
-        if(leerlingnum > 0){
-            console.log(leerlingnum);
-            eraseCookie("Leerlingnum");
-            createCookie("Leerlingnum", leerlingnum);
-            window.location.reload();
-            
+        if (leerlingnum <= (arrayRobin.length/2)) {
+          if(leerlingnum > 0){
+              console.log(leerlingnum);
+              eraseCookie("Leerlingnum");
+              createCookie("Leerlingnum", leerlingnum);
+              window.location.reload();
+          }
+        } else {
+          console.log(leerlingnum);
         }
     } else {
         createCookie("Leerlingnum", 0);
