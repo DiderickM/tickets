@@ -26,7 +26,7 @@
 include_once('../conn.php');
 
 if (isset($_COOKIE['value'])) {
-    echo '<center><h1 style="color: white;font-size:100px; margin-top: 20%;">Je bent nummer ' . $_COOKIE['value'] . '!</h1></center>';
+    echo '<div class="wrapper"><center><h1 style="color: white;font-size:100px; margin-top: 20%;">Je bent nummer ' . $_COOKIE['value'] . '!</h1></center></div>';
 } else {
     if (isset($_POST['code']) && isset($_POST['naam'])) {
         $code = $_POST['code'];
