@@ -49,10 +49,10 @@ include_once('../conn.php');
 if (!isset($_COOKIE['klas'])) {
     $nowValue = 1;
     $code = generateRandomString(5);
-    setcookie('klas', $nowValue, time() + 7200, "/");
+    setcookie('Leerlingnum', $nowValue, time() + 7200, "/");
     setcookie('code', $code, time() + 72000, "/");
 } else {
-    $nowValue = $_COOKIE['klas'] + 1;
+    $nowValue = $_COOKIE['Leerlingnum'];
     setcookie('klas', $nowValue, time() + 7200, "/");
     $code = $_COOKIE['code'];
 }
@@ -60,10 +60,6 @@ if (!isset($_COOKIE['klas'])) {
     $sql = "INSERT INTO tickets (ticket, naam, klas, datum) VALUES (0, 'Started', '$code', '$datum')";
 
     if ($conn->query($sql)) {
-
-        if (isset($_POST['terug'])) {
-            $nowValue = $nowValue - 1;
-        }
 
         $sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
         $result = $conn->query($sql);
@@ -170,11 +166,13 @@ function leerlingnummer(x){
             console.log(leerlingnum);
             eraseCookie("Leerlingnum");
             createCookie("Leerlingnum", leerlingnum);
+            window.location.reload();
             
         }
     } else {
         createCookie("Leerlingnum", 0);
         console.log("Eerste cookie");
+        window.location.reload();
     }
 }
 </script>
