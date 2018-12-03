@@ -113,7 +113,7 @@ if (!isset($_COOKIE['klas'])) {
         </section>
         <section>
             <div class="title"></div>
-            <input class="btn yellow" type="button" value="Volgende" style="margin: 0px; font-size: 1 em; padding: .8em 2em .8em 2em;">
+            <input class="btn yellow" type="button" value="Volgende" onclick="leerlingnummer(1)" style="margin: 0px; font-size: 1 em; padding: .8em 2em .8em 2em;">
         </section>
    </div>
   </div>
