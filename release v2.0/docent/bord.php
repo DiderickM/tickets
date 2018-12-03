@@ -48,6 +48,8 @@ function generateRandomString($length) {
     }
     if(codeExist($randomString)){
         return $randomString;
+    }else{
+        generateRandomString(5);
     }
 }
 
@@ -63,7 +65,6 @@ function codeExist($code){
             echo "ok";
             return true;
         }else{
-            generateRandomString(5);
             return false;
         }
     }else{
