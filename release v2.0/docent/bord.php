@@ -33,11 +33,7 @@
     <script src="../js/functions.js"></script>
 </head>
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-include('../conn.php');
+include_once('../conn.php');
 
 function generateRandomString($length) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -78,10 +74,10 @@ function codeExist($code){
 if (!isset($_COOKIE['klas'])) {
     $nowValue = 1;
     $code = generateRandomString(5);
-    setcookie('klas', $nowValue, time() + 7200, "/");
+    setcookie('Leerlingnum', $nowValue, time() + 7200, "/");
     setcookie('code', $code, time() + 72000, "/");
 } else {
-    $nowValue = $_COOKIE['klas'] + 1;
+    $nowValue = $_COOKIE['Leerlingnum'];
     setcookie('klas', $nowValue, time() + 7200, "/");
     $code = $_COOKIE['code'];
 }
@@ -89,10 +85,6 @@ if (!isset($_COOKIE['klas'])) {
     $sql = "INSERT INTO tickets (ticket, naam, klas, datum) VALUES (0, 'Started', '$code', '$datum')";
 
     if ($conn->query($sql)) {
-
-        if (isset($_POST['terug'])) {
-            $nowValue = $nowValue - 1;
-        }
 
         $sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
         $result = $conn->query($sql);
@@ -146,7 +138,7 @@ if (!isset($_COOKIE['klas'])) {
         </section>
         <section>
             <div class="title"></div>
-            <input id="refresh" class="btn yellow" type="button" value="Volgende" onClick="window.location.reload()" style="margin: 0px; font-size: 1 em; padding: .8em 2em .8em 2em;">
+            <input class="btn yellow" type="button" value="Volgende" style="margin: 0px; font-size: 1 em; padding: .8em 2em .8em 2em;">
         </section>
    </div>
   </div>
@@ -195,15 +187,20 @@ function leerlingnummer(x){
     //er is een leerlingnummer
         var leerlingnum = parseInt(readCookie("Leerlingnum"));
         leerlingnum = leerlingnum + x;
-        if(leerlingnum > 0){
-            console.log(leerlingnum);
-            eraseCookie("Leerlingnum");
-            createCookie("Leerlingnum", leerlingnum);
-            
+        if (leerlingnum <= (arrayRobin.length/2)) {
+          if(leerlingnum > 0){
+              console.log(leerlingnum);
+              eraseCookie("Leerlingnum");
+              createCookie("Leerlingnum", leerlingnum);
+              window.location.reload();
+          }
+        } else {
+          console.log(leerlingnum);
         }
     } else {
         createCookie("Leerlingnum", 0);
         console.log("Eerste cookie");
+        window.location.reload();
     }
 }
 </script>
