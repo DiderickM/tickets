@@ -33,6 +33,12 @@
     <script src="../js/functions.js"></script>
 </head>
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+include_once('../conn.php');
+
 function generateRandomString($length) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
@@ -40,10 +46,32 @@ function generateRandomString($length) {
     for ($i = 0; $i < $length; $i++) {
         $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
-    return $randomString;
+    if(codeExist($randomString)){
+        return $randomString;
+    }
 }
 
-include_once('../conn.php');
+
+//bekijkt of de code al in de database bestaat
+function codeExist($code){
+    $sql = "SELECT klas FROM `tickets` WHERE klas ='$code'";
+    if ($conn->query($sql)) {
+        $result = $conn->query($sql);
+        $num_rows = mysql_num_rows($result);
+        echo $num_rows;
+        if($num_rows === 0){
+            echo "ok";
+            return true;
+        }else{
+            generateRandomString(5);
+            return false;
+        }
+    }else{
+        $message  = 'Invalid query: ' . mysql_error() . "\n";
+        $message .= 'Whole query: ' . $sql;
+        die($message);
+    }
+}
 
 
 if (!isset($_COOKIE['klas'])) {
