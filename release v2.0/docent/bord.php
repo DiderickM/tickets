@@ -194,7 +194,7 @@ function leerlingnummer(x){
               console.log(leerlingnum);
               eraseCookie("Leerlingnum");
               createCookie("Leerlingnum", leerlingnum);
-              window.location.reload();
+              window.location = self.location;
           }
         } else {
           console.log(leerlingnum);
@@ -202,7 +202,7 @@ function leerlingnummer(x){
     } else {
         createCookie("Leerlingnum", 0);
         console.log("Eerste cookie");
-        window.location.reload();
+        window.location = self.location;
     }
 }
 </script>
