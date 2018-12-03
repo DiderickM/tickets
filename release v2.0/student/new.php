@@ -44,7 +44,7 @@ if (isset($_COOKIE['value'])) {
                 $cookie_value = $max;
                 setcookie($cookie_name, $cookie_value, time() + (300), "/");
     
-                echo '<center><h1 style="color: white;font-size:100px; margin-top: 20%;">Je bent nummer ' . $max . '!</h1></center>';
+                echo '<div class="wrapper"><center><h1 style="color: white;font-size:100px; margin-top: 20%;">Je bent nummer ' . $max . '!</h1></center></div>';
 
                 if ($conn->query($sql)) {
                 } else {
