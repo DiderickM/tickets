@@ -33,39 +33,41 @@
     <script src="../js/functions.js"></script>
 </head>
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include_once('../conn.php');
 
-function generateRandomString($length) {
+function generateRandomString($length, $conn) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
     for ($i = 0; $i < $length; $i++) {
         $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
-    if(codeExist($randomString)){
+    if(codeExist($randomString, $conn)){
         return $randomString;
     }else{
-        generateRandomString(5);
+        generateRandomString(5, $conn);
     }
 }
 
 
 //bekijkt of de code al in de database bestaat
-function codeExist($code){
-    $sql = "SELECT klas FROM `tickets` WHERE klas ='$code'";
-    if ($conn->query($sql)) {
-        $result = $conn->query($sql);
-        $num_rows = mysql_num_rows($result);
-        echo $num_rows;
+function codeExist($code, $conn){
+    $sql2 = "SELECT klas FROM tickets WHERE klas ='$code'";
+    if ($conn->query($sql2)) {
+        $result = $conn->query($sql2);
+        $num_rows = mysqli_num_rows($result);
         if($num_rows === 0){
-            echo "ok";
             return true;
         }else{
             return false;
         }
     }else{
         $message  = 'Invalid query: ' . mysql_error() . "\n";
-        $message .= 'Whole query: ' . $sql;
+        $message .= 'Whole query: ' . $sql2;
         die($message);
     }
 }
@@ -73,7 +75,7 @@ function codeExist($code){
 
 if (!isset($_COOKIE['klas'])) {
     $nowValue = 1;
-    $code = generateRandomString(5);
+    $code = generateRandomString(5, $conn);
     setcookie('Leerlingnum', $nowValue, time() + 7200, "/");
     setcookie('code', $code, time() + 72000, "/");
 } else {
