@@ -55,25 +55,23 @@ function displayList(data) {
             for (var i = 0; i < data.length; i = i + 2) {
                 var nummer = data[i]
                 var naam = data[i + 1];
-                if (nummer >= getCookie("value")) {
-                  console.log("Nummer :" +  nummer + "Naam :" + naam);
-                  var entry = document.createElement("div");
-                  entry.setAttribute('class', 'list-item');
+                console.log("Nummer :" +  nummer + "Naam :" + naam);
+                var entry = document.createElement("div");
+                entry.setAttribute('class', 'list-item');
 
-                  var entryTwo = document.createElement("div");
-                  entryTwo.setAttribute('class', 'item-content');
+                var entryTwo = document.createElement("div");
+                entryTwo.setAttribute('class', 'item-content');
 
-                  var entryThree = document.createElement("span");
-                  entryThree.setAttribute('class', 'order');
-                  entryThree.appendChild(document.createTextNode(nummer));
+                var entryThree = document.createElement("span");
+                entryThree.setAttribute('class', 'order');
+                entryThree.appendChild(document.createTextNode(nummer));
 
-                  var text = document.createTextNode("    " + naam);
+                var text = document.createTextNode("    " + naam);
 
-                  entryTwo.appendChild(entryThree);
-                  entryTwo.appendChild(text);
-                  entry.appendChild(entryTwo);
-                  list.appendChild(entry);
-                }
+                entryTwo.appendChild(entryThree);
+                entryTwo.appendChild(text);
+                entry.appendChild(entryTwo);
+                list.appendChild(entry);
             }
         }
     }
