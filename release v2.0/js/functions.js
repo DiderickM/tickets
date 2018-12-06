@@ -19,6 +19,8 @@ $( ).ready(function() {
         return null;
     }
 
+    var nummerNu = readCookie("value");
+
     //deze functie bepaalt wat er met de ingekomen data gebeurt
     function processData(data){
         console.log(data);
@@ -55,7 +57,7 @@ function displayList(data) {
             for (var i = 0; i < data.length; i = i + 2) {
                 var nummer = data[i]
                 var naam = data[i + 1];
-                if (nummer >= readCookie("value")) {
+                if (nummer >= nummerNu) {
                   console.log("Nummer :" +  nummer + "Naam :" + naam);
                   var entry = document.createElement("div");
                   entry.setAttribute('class', 'list-item');
