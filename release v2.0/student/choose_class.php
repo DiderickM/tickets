@@ -30,7 +30,7 @@
         <form action="new.php" method="post">
             <!--<input type="text" name="code" placeholder="C0D3!"><br>-->
             <div class="pos input-effect">
-                <input name="code" class="input effect" type="text" placeholder="">
+                <input id="input" name="code" class="input effect" type="text" placeholder="">
                 <label>Klas code</label>
                 <span class="focus-border"></span>
             </div>
@@ -38,7 +38,7 @@
             <!--<input type="text" name="naam" placeholder="Johan"><br>-->
 
             <div class="pos input-effect">
-                <input name="naam" class="input effect" type="text" placeholder="">
+                <input id="input2" name="naam" class="input effect" type="text" placeholder="">
                 <label>Naam</label>
                 <span class="focus-border"></span>
             </div>
@@ -63,5 +63,18 @@
 				$(this).removeClass("has-content");
 			}
 		})
+
+        var myInput1 = document.getElementById("input");
+        if (myInput1 && myInput1.value) {
+            
+            $('#input').addClass("has-content");
+            
+        }
+
+        var myInput2 = document.getElementById("input2");
+        if (myInput2 && myInput2.value) {
+            $('#input2').addClass("has-content");
+        }
+
 	});
 </script>

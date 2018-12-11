@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl" class="wrapper">
-<head class="wrapper">
+<head>
 <!-- Hotjar Tracking Code for https://skiffle.nl -->
 <script>
     (function(h,o,t,j,a,r){
@@ -26,7 +26,7 @@
 include_once('../conn.php');
 
 if (isset($_COOKIE['value'])) {
-    echo '<div class="wrapper"><center><h1 style="color: white;font-size:100px; margin-top: 20%;">Je bent nummer ' . $_COOKIE['value'] . '!</h1></center></div>';
+    echo '<center><h1 style="color: white;font-size:100px; margin-top: 20%;">Je bent nummer ' . $_COOKIE['value'] . '!</h1></center>';
 } else {
     if (isset($_POST['code']) && isset($_POST['naam'])) {
         $code = $_POST['code'];
@@ -44,7 +44,7 @@ if (isset($_COOKIE['value'])) {
                 $cookie_value = $max;
                 setcookie($cookie_name, $cookie_value, time() + (300), "/");
     
-                echo '<div class="wrapper"><center><h1 style="color: white;font-size:100px; margin-top: 20%;">Je bent nummer ' . $max . '!</h1></center></div>';
+                echo '<center><h1 style="font-size:100px; margin-top: 20%;">Je bent nummer ' . $max . '!</h1></center>';
 
                 if ($conn->query($sql)) {
                 } else {

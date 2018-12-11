@@ -40,7 +40,7 @@ error_reporting(E_ALL);
 include_once('../conn.php');
 
 function generateRandomString($length, $conn) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $characters = '0123456789abcdefghjkmnoprstuvwxyzABCDEFGHJKMNOPRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
     for ($i = 0; $i < $length; $i++) {
@@ -159,8 +159,8 @@ if (!isset($_COOKIE['klas'])) {
 </div>
 <div class="center">
     <a class="btn red" href="../../">Naar beginscherm</a>
+    <button class="btn orange" onclick="leerlingnummer(-1)" value="volgende">Vorige</button>
     <button class="btn yellow" onclick="leerlingnummer(1)" value="volgende">Volgende</button>
-    <button class="btn yellow" onclick="leerlingnummer(-1)" value="volgende">Vorige</button>
 </div>
 
 <script>
