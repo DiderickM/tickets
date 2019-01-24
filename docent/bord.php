@@ -151,7 +151,7 @@ if ($result->num_rows > 0) {
    </div>
   </div>
 </div>
-<div id="" style="overflow:auto;padding-top:5em; height:20em;">
+<div  style="overflow:hidden;padding-top:5em; height:20em;">
 <section class="container" id="myList">
 <!--
 <div class="list-item">
