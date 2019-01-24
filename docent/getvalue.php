@@ -24,7 +24,7 @@ if (!isset($_GET['code'])) {
             $naam = $row['naam'];
             array_push($dataArray, $naam);
         }
-        $output = json_encode($dataArray);
+        $output = implode(',', $dataArray);
         echo $output;
     }
 }

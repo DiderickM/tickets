@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113150562-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113150562-2');
+</script>
 
 <!-- Hotjar Tracking Code for https://skiffle.nl -->
     <script>
@@ -31,63 +40,55 @@
 <!-- other -->
     <script src="../js/list.js"></script>
     <script src="../js/functions.js"></script>
-    <script>
-    $( document ).ready(function() {
-        console.log( "ready!" );
-        list();
-        
-        function readCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for(var i=0;i < ca.length;i++) {
-                var c = ca[i];
-                while (c.charAt(0)==' ') c = c.substring(1,c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-            }
-            return null;
-        }
-    function loadData()
-        {
-            x = 1;  // 5 Seconds
-            var klasCode = readCookie('code');
-                    $.ajax({
-                        type: "GET",
-                        url: "getvalue.php",
-                        data: "code="+klasCode,
-                        cache: false,
-                        success: function(data){
-                            console.log(data);
-                        }
-                    });
-            setTimeout(refreshData, x*1000);
-        }
-    loadData(); // execute function
-
-        
-});
-    </script>
 </head>
 <?php
-function generateRandomString($length) {
-    $characters = '0123456789abcdefghjkmnopqrstuvwxyzABCDEFGHJKMNOPQRSTUVWXYZ';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+include_once('../conn.php');
+
+function generateRandomString($length, $conn) {
+    $characters = '0123456789abcdefghjkmnoprstuvwxyzABCDEFGHJKMNOPRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
     for ($i = 0; $i < $length; $i++) {
         $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
-    return $randomString;
+    if(codeExist($randomString, $conn)){
+        return $randomString;
+    }else{
+        generateRandomString(5, $conn);
+    }
 }
 
-include_once('../conn.php');
+
+//bekijkt of de code al in de database bestaat
+function codeExist($code, $conn){
+    $sql2 = "SELECT klas FROM tickets WHERE klas ='$code'";
+    if ($conn->query($sql2)) {
+        $result = $conn->query($sql2);
+        $num_rows = mysqli_num_rows($result);
+        if($num_rows === 0){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        $message  = 'Invalid query: ' . mysql_error() . "\n";
+        $message .= 'Whole query: ' . $sql2;
+        die($message);
+    }
+}
 
 
 if (!isset($_COOKIE['klas'])) {
     $nowValue = 1;
-    $code = generateRandomString(5);
-    setcookie('klas', $nowValue, time() + 7200, "/");
+    $code = generateRandomString(5, $conn);
+    setcookie('Leerlingnum', $nowValue, time() + 7200, "/");
     setcookie('code', $code, time() + 72000, "/");
 } else {
-    $nowValue = $_COOKIE['klas'] + 1;
+    $nowValue = $_COOKIE['Leerlingnum'];
     setcookie('klas', $nowValue, time() + 7200, "/");
     $code = $_COOKIE['code'];
 }
@@ -95,10 +96,6 @@ if (!isset($_COOKIE['klas'])) {
     $sql = "INSERT INTO tickets (ticket, naam, klas, datum) VALUES (0, 'Started', '$code', '$datum')";
 
     if ($conn->query($sql)) {
-
-        if (isset($_POST['terug'])) {
-            $nowValue = $nowValue - 1;
-        }
 
         $sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
         $result = $conn->query($sql);
@@ -152,67 +149,69 @@ if (!isset($_COOKIE['klas'])) {
         </section>
         <section>
             <div class="title"></div>
-            <input id="refresh" class="btn yellow" type="button" value="Volgende" onClick="window.location.reload()" style="margin: 0px; font-size: 1 em; padding: .8em 2em .8em 2em;">
+            <input class="btn yellow" type="button" value="Volgende" onclick="leerlingnummer(1)" style="margin: 0px; font-size: 1 em; padding: .8em 2em .8em 2em;">
         </section>
    </div>
   </div>
 </div>
 <div id="" style="overflow:auto;padding-top:5em; height:20em;">
-<section class="container">
-
+<section class="container" id="myList">
+<!--
 <div class="list-item">
     <div class="item-content">
     <span class="order">1</span> Alpha
     <a class="btn red" style="float: right; height: 2.5em; line-height: 1.25em;">X</a>
     </div>
 </div>
-
-<div class="list-item">
-    <div class="item-content">
-    <span class="order">2</span> Bravo
-    <a class='btn red' style="float: right; height: 2.5em; line-height: 1.25em;">X</a>
-    </div>
-</div>
-
-<div class="list-item">
-    <div class="item-content">
-    <span class="order">3</span> Charlie
-    <a class="btn red" style="float: right; height: 2.5em; line-height: 1.25em;">X</a>
-    </div>
-</div>
-
-<div class="list-item">
-    <div class="item-content">
-    <span class="order">4</span> Delta
-    <a class="btn red" style="float: right; height: 2.5em; line-height: 1.25em;">X</a>
-    </div>
-</div>
-
-<div class="list-item">
-    <div class="item-content">
-    <span class="order">5</span> Beta
-    <a class="btn red" style="float: right; height: 2.5em; line-height: 1.25em;">X</a>
-    </div>
-</div>
-
-<div class="list-item">
-    <div class="item-content">
-    <span class="order">6</span> Alpha
-    <a class="btn red" style="float: right; height: 2.5em; line-height: 1.25em;">X</a>
-    </div>
-</div>
-
+-->
 </section>
 </div>
 <div class="center">
-    <form action="bord.php" method="post"><input type="submit" class="btn red" name="terug" value="Terug"></form>
-    <a class="btn red" href="../">Terug</a>
-    <input id="refresh" class="btn yellow" type="button" value="Volgende" onClick="window.location.reload()">
+    <a class="btn red" href="../../">Naar beginscherm</a>
+    <button class="btn orange" onclick="leerlingnummer(-1)" value="volgende">Vorige</button>
+    <button class="btn yellow" onclick="leerlingnummer(1)" value="volgende">Volgende</button>
 </div>
+
 <script>
+function createCookie(name,value) {
+    var expires = "";
+    document.cookie = name+"="+value;
+}
 
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
 
+function eraseCookie(name) {
+    createCookie(name,"",-1);
+}
 
-
-
+function leerlingnummer(x){
+    if (readCookie("Leerlingnum") != null) {
+    //er is een leerlingnummer
+        var leerlingnum = parseInt(readCookie("Leerlingnum"));
+        leerlingnum = leerlingnum + x;
+        if (leerlingnum <= (arrayRobin.length/2)) {
+          if(leerlingnum > 0){
+              console.log(leerlingnum);
+              eraseCookie("Leerlingnum");
+              createCookie("Leerlingnum", leerlingnum);
+              window.location = self.location;
+          }
+        } else {
+          console.log(leerlingnum);
+        }
+    } else {
+        createCookie("Leerlingnum", 0);
+        console.log("Eerste cookie");
+        window.location = self.location;
+    }
+}
 </script>

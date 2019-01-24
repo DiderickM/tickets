@@ -143,6 +143,7 @@ h2 {
     color: #aaa;
     transition: 0.3s; z-index: -1;
     letter-spacing: 0.5px;
+    display: flex;
 }
     
 .effect:focus ~ label, .has-content.effect ~ label{
