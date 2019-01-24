@@ -17,7 +17,7 @@ $( ).ready(function() {
         return null;
     }
 
-    var nummerNu = readCookie("value");
+    var nummerNu = readCookie("Leerlingnum");
 
     //deze functie bepaalt wat er met de ingekomen data gebeurt
     function processData(data){

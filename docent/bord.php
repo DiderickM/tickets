@@ -82,10 +82,10 @@ function codeExist($code, $conn){
 }
 
 
-if (!isset($_COOKIE['klas'])) {
+if (!isset($_COOKIE['Leerlingnum'])) {
     $nowValue = 1;
     $code = generateRandomString(5, $conn);
-    setcookie('Leerlingnum', $nowValue, time() + 7200, "/");
+    setcookie('Leerlingnum', $nowValue, time() + 7200, "/docent");
     setcookie('code', $code, time() + 72000, "/");
     $datum = date("Y-m-d h:i:sa");
     $sql = "INSERT INTO tickets (ticket, naam, klas, datum) VALUES (0, 'Started', '$code', '$datum')";
@@ -94,7 +94,7 @@ if (!isset($_COOKIE['klas'])) {
     }
 } else {
     $nowValue = $_COOKIE['Leerlingnum'];
-    setcookie('klas', $nowValue, time() + 7200, "/");
+    setcookie('Leerlingnum', $nowValue, time() + 7200, "/docent");
     $code = $_COOKIE['code'];
 }
 $sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
@@ -102,11 +102,11 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        setcookie('klas', $nowValue, time() + 7200, "/");
+        setcookie('Leerlingnum', $nowValue, time() + 7200, "/docent");
     }
 } else {
     $nowValue -= 1;
-    setcookie('klas', $nowValue, time() + 7200, "/");
+    setcookie('Leerlingnum', $nowValue, time() + 7200, "/docent");
 }
 $sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
 $result = $conn->query($sql);
