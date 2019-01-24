@@ -87,38 +87,35 @@ if (!isset($_COOKIE['klas'])) {
     $code = generateRandomString(5, $conn);
     setcookie('Leerlingnum', $nowValue, time() + 7200, "/");
     setcookie('code', $code, time() + 72000, "/");
+    $datum = date("Y-m-d h:i:sa");
+    $sql = "INSERT INTO tickets (ticket, naam, klas, datum) VALUES (0, 'Started', '$code', '$datum')";
+    if (!$conn->query($sql)) {
+        echo 'Houton, we got a problem';
+    }
 } else {
     $nowValue = $_COOKIE['Leerlingnum'];
     setcookie('klas', $nowValue, time() + 7200, "/");
     $code = $_COOKIE['code'];
 }
-    $datum = date("Y-m-d h:i:sa");
-    $sql = "INSERT INTO tickets (ticket, naam, klas, datum) VALUES (0, 'Started', '$code', '$datum')";
+$sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
+$result = $conn->query($sql);
 
-    if ($conn->query($sql)) {
-
-        $sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                setcookie('klas', $nowValue, time() + 7200, "/");
-            }
-        } else {
-            $nowValue -= 1;
-            setcookie('klas', $nowValue, time() + 7200, "/");
-        }
-        $sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    $name = $row['naam'];
-                }
-            }
-    } else {
-        echo "Houston, we got a problem";
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        setcookie('klas', $nowValue, time() + 7200, "/");
     }
+} else {
+    $nowValue -= 1;
+    setcookie('klas', $nowValue, time() + 7200, "/");
+}
+$sql = "SELECT naam, ticket FROM tickets WHERE ticket = '$nowValue' AND klas = '$code'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $name = $row['naam'];
+    }
+}
 ?>
 
 <div class="ticket">
@@ -199,18 +196,14 @@ function leerlingnummer(x){
         var leerlingnum = parseInt(readCookie("Leerlingnum"));
         leerlingnum = leerlingnum + x;
         if (leerlingnum <= (arrayRobin.length/2)) {
-          if(leerlingnum > 0){
-              console.log(leerlingnum);
+          if(leerlingnum >= 0){
               eraseCookie("Leerlingnum");
               createCookie("Leerlingnum", leerlingnum);
               window.location = self.location;
           }
-        } else {
-          console.log(leerlingnum);
         }
     } else {
         createCookie("Leerlingnum", 0);
-        console.log("Eerste cookie");
         window.location = self.location;
     }
 }
