@@ -38,7 +38,8 @@ if (isset($_COOKIE['value'])) {
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $max = $row['ticket'] + 1;
-                $sql = "INSERT INTO tickets (ticket, naam, klas) VALUES ('$max', '$naam', '$code')";
+                $datum = date("Y-m-d h:i:sa");
+                $sql = "INSERT INTO tickets (ticket, naam, klas, datum) VALUES ('$max', '$naam', '$code', '$datum')";
     
                 $cookie_name = "value";
                 $cookie_value = $max;
