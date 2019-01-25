@@ -1,0 +1,180 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    /* align-content: center; */
+    /* height: 100vh; */
+}
+
+h2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.center {
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-content: center; */
+    width: 50vw;
+}
+
+.buttons {
+    text-align: center;
+}
+
+/* start da css for da buttons */
+.btn {
+    /* align-content: center; */
+    /* text-align: center; */
+    /* border: none; */
+    border-radius: 5px;
+    padding: 0% 3%;
+    font-size: 178%;
+    text-decoration: none;
+    margin: 0.5em;
+    color: #fff;
+    /* position: relative; */
+    display: flex;
+    min-width: 22.1vh;
+    justify-content: space-around;
+    border: none;
+    /* padding-right: 1vh; */
+}
+
+.btn:active {
+    transform: translate(0px, 5px);
+    -webkit-transform: translate(0px, 5px);
+    box-shadow: 0px 1px 0px 0px;
+}
+
+.blue {
+    background-color: #55acee;
+    box-shadow: 0px 5px 0px 0px #3C93D5;
+}
+
+.blue:hover {
+    background-color: #6FC6FF;
+}
+
+.green {
+    background-color: #2ecc71;
+    box-shadow: 0px 5px 0px 0px #15B358;
+}
+
+.green:hover {
+    background-color: #48E68B;
+}
+
+.red {
+    background-color: #e74c3c;
+    box-shadow: 0px 5px 0px 0px #CE3323;
+}
+
+.red:hover {
+    background-color: #FF6656;
+}
+
+.purple {
+    background-color: #9b59b6;
+    box-shadow: 0px 5px 0px 0px #82409D;
+}
+
+.purple:hover {
+    background-color: #B573D0;
+}
+
+.orange {
+    background-color: #e67e22;
+    box-shadow: 0px 5px 0px 0px #CD6509;
+}
+
+.orange:hover {
+    background-color: #FF983C;
+}
+
+.yellow {
+    background-color: #f1c40f;
+    box-shadow: 0px 5px 0px 0px #D8AB00;
+}
+
+.yellow:hover {
+    background-color: #FFDE29;
+}
+
+:focus{outline: none;}
+    
+
+.pos{
+    position: relative;
+    margin: 9% 0px 3% 0px;
+} /* necessary to give position: relative to parent. */
+    
+.input {
+    text-align: left;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    font-size: 228%;
+}
+    
+.effect{
+    border: 0;
+    padding: 4px 0;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+}
+
+
+.effect ~ .focus-border{
+    position: absolute;
+    bottom: 0;
+    left: 50%; width: 0;
+    height: 2px;
+    background-color: #3399FF;
+    transition: 0.4s;
+}
+    
+.effect:focus ~ .focus-border,
+.has-content.effect-17 ~ .focus-border{
+    width: 100%;
+    transition: 0.4s;
+    left: 0;
+}
+
+.effect ~ label{
+    position: absolute;
+    vertical-align: middle;
+    width: 100%; 
+    top: 7px;
+    color: #aaa;
+    transition: 0.3s; z-index: -1;
+    letter-spacing: 0.5px;
+    display: flex;
+}
+    
+.effect:focus ~ label, .has-content.effect ~ label{
+    top: -16px;
+    font-size: 12px;
+    color: #3399FF;
+    transition: 0.3s;
+}
+
+    .btncenter{
+        position: relative;
+        display: flex
+    }
+    
+        .same {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            flex-wrap: wrap;
+        }
+
+form{
+    padding: 0vw;
+}

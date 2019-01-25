@@ -49,7 +49,7 @@ error_reporting(E_ALL);
 include_once('../conn.php');
 
 function generateRandomString($length, $conn) {
-    $characters = '0123456789abcdefghjkmnoprstuvwxyzABCDEFGHJKMNOPRSTUVWXYZ';
+    $characters = '0123456789';
     $charactersLength = strlen($characters);
     $randomString = '';
     for ($i = 0; $i < $length; $i++) {

@@ -4,6 +4,8 @@
 
 body {
     background: var(--main-bg-color);
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .ticket {

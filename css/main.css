@@ -108,7 +108,7 @@ h2 {
 
 .pos{
     position: relative;
-    margin: 20% 0px 20% 0px;
+    margin: 10% 0px 5% 0px;
 } /* necessary to give position: relative to parent. */
     
 .input {
@@ -117,7 +117,7 @@ h2 {
     width: 100%;
     box-sizing: border-box;
     letter-spacing: 1px;
-    font-size: 120%;    
+    font-size: 2em;    
 }
     
 .effect{
@@ -173,3 +173,21 @@ h2 {
             height: 100%;
             flex-wrap: wrap;
         }
+
+.buttonChoose{
+        /* align-content: center; */
+    /* text-align: center; */
+    /* border: none; */
+    border-radius: 5px;
+    padding: 4vh 0vh;
+    font-size: 258%;
+    text-decoration: none;
+    margin: 1em;
+    color: #fff;
+    /* position: relative; */
+    display: flex;
+    min-width: 47.1vh;
+    justify-content: space-around;
+    border: none;
+    /* padding-right: 1vh; */
+}
