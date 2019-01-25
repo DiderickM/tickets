@@ -1,6 +1,10 @@
 body {
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    /* align-content: center; */
+    /* height: 100vh; */
 }
 
 h2 {
@@ -22,16 +26,21 @@ h2 {
 
 /* start da css for da buttons */
 .btn {
-    text-align: center;
-    border: none;
+    /* align-content: center; */
+    /* text-align: center; */
+    /* border: none; */
     border-radius: 5px;
-    padding: 15px 25px;
-    font-size: 22px;
+    padding: 4vh 0vh;
+    font-size: 258%;
     text-decoration: none;
-    margin: 20px;
+    margin: 1em;
     color: #fff;
-    position: relative;
-    display: inline-block;
+    /* position: relative; */
+    display: flex;
+    min-width: 47.1vh;
+    justify-content: space-around;
+    border: none;
+    /* padding-right: 1vh; */
 }
 
 .btn:active {
@@ -160,6 +169,7 @@ h2 {
     
         .same {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             height: 100%;
+            flex-wrap: wrap;
         }
