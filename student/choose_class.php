@@ -31,7 +31,7 @@
             <!--<input type="text" name="code" placeholder="C0D3!"><br>-->
             <div class="pos input-effect">
                 <input id="input" name="code" class="input effect" type="text" placeholder="">
-                <label>Klas code</label>
+                <label for="input">Klas code</label>
                 <span class="focus-border"></span>
             </div>
 
@@ -44,9 +44,14 @@
             } else {
                 echo '<div class="pos input-effect">
                 <input id="input2" name="naam" class="input effect" type="text" placeholder="">
-                <label>Naam</label>
+                <label for="input2">Naam</label>
                 <span class="focus-border"></span>
-            </div>';
+            </div>
+            <div>
+            <input id="input3" type="checkbox" name="remember" value="true">
+                <label for="input3">Onthoud mijn naam</label>
+            </div>
+            ';
             }
 
             ?>
