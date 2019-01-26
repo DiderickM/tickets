@@ -31,6 +31,7 @@ if (isset($_COOKIE['value'])) {
     if (isset($_POST['code']) && isset($_POST['naam'])) {
         $code = $_POST['code'];
         $naam = $_POST['naam'];
+        setcookie("username", $naam, time() + 2592000, "/");
     
         $sql = "SELECT ticket FROM tickets WHERE klas = '$code' ORDER BY ticket DESC LIMIT 1";
         $result = $conn->query($sql);

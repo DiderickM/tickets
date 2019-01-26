@@ -37,11 +37,19 @@
 
             <!--<input type="text" name="naam" placeholder="Johan"><br>-->
 
-            <div class="pos input-effect">
+            <?php
+
+            if (isset($_COOKIE['username'])) {
+                echo '<input id="input2" name="naam" value="' . $_COOKIE['username'] . '" type="hidden">';
+            } else {
+                echo '<div class="pos input-effect">
                 <input id="input2" name="naam" class="input effect" type="text" placeholder="">
                 <label>Naam</label>
                 <span class="focus-border"></span>
-            </div>
+            </div>';
+            }
+
+            ?>
             <div class="btncenter">
                 <input style="width: 100%" class="btn blue" type="submit" value="Join!"><br>
                 <a href="../" class="btn red">Terug</a>
