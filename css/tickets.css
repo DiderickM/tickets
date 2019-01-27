@@ -7,16 +7,23 @@ body {
 }
 
 .ticket {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     width: 700px;
     margin: 20px auto;
 }
 
 .ticket .stub,
 .ticket .check {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 .stub {
@@ -49,8 +56,12 @@ body {
 }
 
 .stub .top {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     height: 40px;
     text-transform: uppercase;
 }
@@ -142,8 +153,12 @@ body {
 }
 
 .check .info {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: flex-start;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
     font-size: 12px;
     margin-top: 20px;
     width: 100%;
@@ -166,6 +181,14 @@ body {
     font-size: 10px;
     text-transform: uppercase;
 }
+@-webkit-keyframes slideInFromLeft {
+  0% {
+    background-color: #fff;
+  }
+  100% {
+    background-color: var(--main-bg-color);
+  }
+}
 @keyframes slideInFromLeft {
   0% {
     background-color: #fff;
@@ -176,7 +199,8 @@ body {
 }
   
   *, *:before, *:after {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
   }
   
   .container {
@@ -187,7 +211,9 @@ body {
     height: 400px;
     opacity: 0;
     visibility: hidden;
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
   }
   
   .list-item {  
@@ -208,7 +234,8 @@ body {
     font-size: 24px;
     font-weight: 400;
     background-color: rgb(255, 255, 255);
-    box-shadow: rgba(0,0,0,0.2) 0px 1px 2px 0px;
+    -webkit-box-shadow: rgba(0,0,0,0.2) 0px 1px 2px 0px;
+            box-shadow: rgba(0,0,0,0.2) 0px 1px 2px 0px;
   }
   
   ::-webkit-scrollbar {
