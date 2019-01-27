@@ -48,7 +48,7 @@ if (isset($_COOKIE['value'])) {
                 $cookie_value = $max;
                 setcookie($cookie_name, $cookie_value, time() + (300), "/");
     
-                echo '<center><h1 style="font-size:100px; margin-top: 20%;">Je bent nummer ' . $max . '!</h1></center>';
+                echo '<center><h1 style="color: white; font-size:100px; margin-top: 20%;">Je bent nummer ' . $max . '!</h1></center>';
 
                 if ($conn->query($sql)) {
                 } else {
@@ -56,7 +56,8 @@ if (isset($_COOKIE['value'])) {
                 }
             }
         } else {
-            echo 'Sorry, deze klas lijkt niet te bestaan man. Vet-balen.';
+            echo '<style>center{color:white; font-size: 2em}</style>';
+            echo '<center>Sorry, deze klas lijkt niet te bestaan man. Vet-balen.</center>';
         }
     }
 }
