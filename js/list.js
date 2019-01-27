@@ -11,7 +11,7 @@ function list(){
     function changeIndex(item, to) {
 
         // Change position in array
-        arrayMove(sortables, item.index, to);
+        // arrayMove(sortables, item.index, to);
 
         // Change element's position in DOM. Not always necessary. Just showing how.
         if (to === total - 1) {
@@ -37,17 +37,17 @@ function list(){
         paused: true });
 
 
-        var dragger = new Draggable(element, {
-        onDragStart: downAction,
-        onRelease: upAction,
-        onDrag: dragAction,
-        cursor: "inherit",
-        type: "y" });
+        // var dragger = new Draggable(element, {
+        // onDragStart: downAction,
+        // onRelease: upAction,
+        // onDrag: dragAction,
+        // cursor: "inherit",
+        // type: "y" });
 
 
         // Public properties and methods
         var sortable = {
-        dragger: dragger,
+        // dragger: dragger,
         element: element,
         index: index,
         setIndex: setIndex };
@@ -87,8 +87,9 @@ function list(){
         function layout() {
             TweenLite.to(element, 0.3, { y: sortable.index * rowSize });
         }
-
+        console.log(sortable)
         return sortable;
+
     }
 
     // Changes an elements's position in array
