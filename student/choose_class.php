@@ -43,7 +43,7 @@
                 <span class="focus-border"></span>
             </div>
             <div>
-            <input id="input3" type="checkbox" name="remember" value="true">
+            <input id="input3" type="checkbox" name="remember" value="true" <?php if(isset($_COOKIE['username'])) { echo 'checked'; } ?> >
                 <label for="input3">Onthoud mijn naam</label>
             </div>
             <div class="btncenter">
