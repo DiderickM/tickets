@@ -22,7 +22,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 </head>
 <style>
-    
+
 </style>
 
 <body>
@@ -37,13 +37,8 @@
 
             <!--<input type="text" name="naam" placeholder="Johan"><br>-->
 
-            <?php
-
-            if (isset($_COOKIE['username'])) {
-                echo '<input id="input2" name="naam" value="' . $_COOKIE['username'] . '" type="hidden">';
-            } else {
-                echo '<div class="pos input-effect">
-                <input id="input2" name="naam" class="input effect" type="text" placeholder="">
+            <div class="pos input-effect">
+                <input id="input2" name="naam" class="input effect" type="text" value="<?php echo $_COOKIE['username']; ?>" placeholder="">
                 <label for="input2">Naam</label>
                 <span class="focus-border"></span>
             </div>
@@ -51,10 +46,6 @@
             <input id="input3" type="checkbox" name="remember" value="true">
                 <label for="input3">Onthoud mijn naam</label>
             </div>
-            ';
-            }
-
-            ?>
             <div class="btncenter">
                 <input style="width: 100%" class="btn blue" type="submit" value="Join!"><br>
                 <a href="../" class="btn red">Terug</a>
@@ -64,11 +55,11 @@
 </body>
 </html>
 <script>
-     
+
     $(window).load(function(){
-       
+
 		$("pos input").val("");
-		
+
 		$(".input-effect input").focusout(function(){
 			if($(this).val() != ""){
 				$(this).addClass("has-content");
@@ -79,9 +70,9 @@
 
         var myInput1 = document.getElementById("input");
         if (myInput1 && myInput1.value) {
-            
+
             $('#input').addClass("has-content");
-            
+
         }
 
         var myInput2 = document.getElementById("input2");
