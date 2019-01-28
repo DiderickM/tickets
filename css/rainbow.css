@@ -6,6 +6,7 @@
     top: 0;
     bottom: 0;
     position: absolute;
+    margin-top: 0%;
   background: -webkit-linear-gradient(326deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
   background: -o-linear-gradient(326deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
   background-image: -moz-linear-gradient(bottom, #DBA803 13%, #FFCA1D 57%, #FFF338 79%);
