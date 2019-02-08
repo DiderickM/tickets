@@ -57,8 +57,7 @@ if (isset($_COOKIE['value'])) {
                 }
             }
         } else {
-            echo '<style>center{color:white; font-size: 2em}</style>';
-            echo '<center class="wrapper">Sorry, deze klas lijkt niet te bestaan man. Vet-balen.</center>';
+            echo '<center><h1 class="wrapper title">Sorry, deze klas lijkt niet te bestaan man. Vet-balen.</h1></center>';
         }
     }
 }
