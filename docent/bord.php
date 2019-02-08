@@ -29,7 +29,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/tickets.css">
-    <link type="text/css" rel="stylesheet" href="../css/rainbow.css">
 <!-- font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 <!-- list libarary files -->
@@ -134,7 +133,7 @@ if ($result->num_rows > 0) {
     <div class="big">
       Klas Code: <br><span><?php echo $code?></span>
     </div>
-    <div class="number"><?php echo $nowValue ?></div>
+    <div class="number"></div>
     <div class="info">
         <section>
             <div class="title">Date</div>
@@ -190,21 +189,33 @@ function eraseCookie(name) {
     createCookie(name,"",-1);
 }
 
-function leerlingnummer(x){
-    if (readCookie("Leerlingnum") != null) {
-    //er is een leerlingnummer
-        var leerlingnum = parseInt(readCookie("Leerlingnum"));
-        leerlingnum = leerlingnum + x;
-        if (leerlingnum <= (arrayRobin.length/2)) {
-          if(leerlingnum >= 0){
-              eraseCookie("Leerlingnum");
-              createCookie("Leerlingnum", leerlingnum);
-              window.location = self.location;
-          }
-        }
-    } else {
-        createCookie("Leerlingnum", 0);
-        window.location = self.location;
-    }
-}
+
+// function leerlingnummer(nummer){
+//     if (readCookie("Leerlingnum") != null) {
+//     //er is een leerlingnummer
+//         var leerlingnum = parseInt(readCookie("Leerlingnum"));
+//         leerlingnum = leerlingnum + nummer;
+//         if (leerlingnum <= (arrayRobin.length/2)) {
+//           if(leerlingnum >= 0){
+//               //geef cookie een update
+//             eraseCookie("Leerlingnum");
+//             createCookie("Leerlingnum", leerlingnum);
+//             console.log(leerlingnum);
+//               //verander de waarde die wordt weergegeven
+//             x=document.getElementsByClassName("number");  // Find the elements
+//             for(var i = 0; i < x.length; i++){
+//                 x[i].innerText=leerlingnum;    // Change the content
+//             }
+//               //Zorg er voor dat de array wordt geupate
+//             displayList(arrayRobin);
+//           }
+//         }
+//     } else {
+//         createCookie("Leerlingnum", 0);
+//         x=document.getElementsByClassName("number");  // Find the elements
+//         for(var i = 0; i < x.length; i++){
+//             x[i].innerText="0";    // Change the content
+//         }
+//     }
+// }
 </script>

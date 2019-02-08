@@ -1,4 +1,4 @@
-$( ).ready(function() {
+// $( ).ready(function() {
 
     //global
     oldArray = [];
@@ -17,7 +17,7 @@ $( ).ready(function() {
         return null;
     }
 
-    var nummerNu = readCookie("Leerlingnum");
+
 
     //deze functie bepaalt wat er met de ingekomen data gebeurt
     function processData(data){
@@ -48,7 +48,9 @@ function displayList(data) {
             for (var i = 0; i < data.length; i = i + 2) {
                 var nummer = data[i]
                 var naam = data[i + 1];
+                var nummerNu = readCookie("Leerlingnum");
                 if (nummer >= nummerNu) {
+                    console.log(readCookie("Leerlingnum"));
                   var entry = document.createElement("div");
                   entry.setAttribute('class', 'list-item');
 
@@ -87,6 +89,7 @@ function loadData(){
                         if(processData(data)){
                             //de functies in processData hebben elementen gemaakt, maar deze moeten nog visueel worden verwerkt
                             list();
+                            console.log('list');
                         };
                     }
                 });
@@ -94,9 +97,45 @@ function loadData(){
             setTimeout(loadData, x*1000);
 }
 
-
+function leerlingnummer(nummer){
+    if (readCookie("Leerlingnum") != null) {
+    //er is een leerlingnummer
+        var leerlingnum = parseInt(readCookie("Leerlingnum"));
+        //only play audio if next person is
+        if(leerlingnum < leerlingnum + nummer){
+            audio.play();
+        }
+        leerlingnum = leerlingnum + nummer;
+        if (leerlingnum <= (arrayRobin.length/2)) {
+          if(leerlingnum >= 0){
+              //geef cookie een update
+            eraseCookie("Leerlingnum");
+            createCookie("Leerlingnum", leerlingnum);
+              //verander de waarde die wordt weergegeven
+            x=document.getElementsByClassName("number");  // Find the elements
+            for(var i = 0; i < x.length; i++){
+                x[i].innerText=leerlingnum;    // Change the content
+            }
+              //Zorg er voor dat de array wordt geupate
+            if(displayList(arrayRobin)){
+                list();
+            };
+            
+          }
+        }
+    } else {
+        createCookie("Leerlingnum", 0);
+        x=document.getElementsByClassName("number");  // Find the elements
+        for(var i = 0; i < x.length; i++){
+            x[i].innerText="0";    // Change the content
+        }
+    }
+}
 
 //eerste keer aanroepen om de functie laten te beginnen
+var audio = new Audio('equilateral_plate+second_partial.mp3');
 loadData(); // execute function
-});
+// });
+
+
 
