@@ -27,7 +27,7 @@
 
 <body>
     <div class="center">
-        <form action="new.php" method="post">
+        <form action="new.php" method="post" id="submitForm">
             <!--<input type="text" name="code" placeholder="C0D3!"><br>-->
             <div class="pos input-effect">
                 <input id="input" name="code" class="input effect" type="text" placeholder="">
@@ -70,9 +70,7 @@
 
         var myInput1 = document.getElementById("input");
         if (myInput1 && myInput1.value) {
-
             $('#input').addClass("has-content");
-
         }
 
         var myInput2 = document.getElementById("input2");
@@ -80,5 +78,51 @@
             $('#input2').addClass("has-content");
         }
 
-	});
+        function findGetParameter(parameterName) {
+            var result = null,
+                tmp = [];
+            var items = location.search.substr(1).split("&");
+            for (var index = 0; index < items.length; index++) {
+                tmp = items[index].split("=");
+                if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+            }
+            return result;
+        }   
+        checkUrlData();
+        function checkUrlData(){
+            var data = findGetParameter('d');
+            console.log(data.length);
+            if(data != null){
+                if(data.length > 0){
+                    console.log(data);
+                    document.getElementById("input").value = data;
+                    $('#input').addClass("has-content");
+                }else{
+                    do{
+                        data = findGetParameter('d');
+                    }while(data.length < 0);
+                }
+            }
+            submitonready();
+        }
+        
+        function submitonready(){
+            if(getUsername != null){
+                if(document.getElementById('input').value != ''){
+                    if(document.getElementById('input2').value != ''){
+                        //de naam en code is ingevuld dus submit maar
+                        document.getElementById("submitForm").submit();
+                        console.log(document.getElementById('input').value);
+                        console.log(document.getElementById('input2').value);
+                    }
+                }
+            }
+        }
+
+        function getUsername(){
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + 'username' + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        }
+    });
 </script>

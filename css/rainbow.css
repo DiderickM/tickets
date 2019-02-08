@@ -30,7 +30,10 @@
 
 .title {
     color: white;
-    font-size:9em;
+    font-size: 16vmin;
     padding-top: 1.5em;
     margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }

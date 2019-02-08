@@ -21,6 +21,7 @@
     <link type="text/css" rel="stylesheet" href="../css/rainbow.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
+<body style="margin: 0;">
 <?php
 
 include_once('../conn.php');
@@ -34,20 +35,20 @@ if (isset($_COOKIE['value'])) {
         if (isset($_POST['remember'])) {
             setcookie("username", $naam, time() + 2592000, "/");
         }
-    
+
         $sql = "SELECT ticket FROM tickets WHERE klas = '$code' ORDER BY ticket DESC LIMIT 1";
         $result = $conn->query($sql);
-    
+
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $max = $row['ticket'] + 1;
                 $datum = date("Y-m-d h:i:sa");
                 $sql = "INSERT INTO tickets (ticket, naam, klas, datum) VALUES ('$max', '$naam', '$code', '$datum')";
-    
+
                 $cookie_name = "value";
                 $cookie_value = $max;
                 setcookie($cookie_name, $cookie_value, time() + (300), "/");
-    
+
                 echo '<center><h1 class="wrapper title">Je bent nummer ' . $max . '!</h1></center>';
 
                 if ($conn->query($sql)) {
@@ -62,4 +63,9 @@ if (isset($_COOKIE['value'])) {
     }
 }
 
+echo '<a href="https://www.youtube.com/watch?v=lXMskKTw3Bc"><img src="banner.png" class="ads"></a>';
+
 ?>
+
+</body>
+</html>

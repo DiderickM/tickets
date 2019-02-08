@@ -203,3 +203,9 @@ h2 {
                     flex-direction: column;
             height: 100%;
         }
+
+.ads{
+    position: absolute;
+    bottom: 0%; 
+    width:100%;
+}
