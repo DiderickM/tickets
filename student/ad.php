@@ -8,7 +8,7 @@ $TARGET_URI = 'https://www.youtube.com/watch?v=lXMskKTw3Bc';
 
 $naam       = $_COOKIE['username'];
 $klascode   = $_COOKIE['code'];
-$ip         = $_SERVER['REMOTE_ADDR'];
+$ip         = ip2long($_SERVER['REMOTE_ADDR']);
 
 $sql        = "INSERT INTO ads (goal, ip, naam, klascode) VALUES ('$TARGET_URI', '$ip', '$naam', '$klascode')";
 
