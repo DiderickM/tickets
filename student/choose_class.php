@@ -32,17 +32,20 @@
 <body>
     <div class="center">
         <form action="new.php" method="post" id="submitForm">
-            <!--<input type="text" name="code" placeholder="C0D3!"><br>-->
             <div class="pos input-effect">
                 <input id="input" name="code" class="input effect" type="text" placeholder="">
                 <label for="input">Klas code</label>
                 <span class="focus-border"></span>
             </div>
 
-            <!--<input type="text" name="naam" placeholder="Johan"><br>-->
-
             <div class="pos input-effect">
-                <input data-emojiable="true" data-emoji-input="unicode" id="input2" name="naam" class="input effect" type="text" placeholder="" maxlength="60">
+            <input data-emojiable="true" data-emoji-input="unicode" id="input2" name="naam" class="input effect" type="text" placeholder="" maxlength="60" value="
+                <?php
+                    if (isset($_COOKIE['username'])) {
+                        echo $_COOKIE['username'];
+                    }
+                ?>
+                ">
                 <label for="input2">Naam</label>
                 <span class="focus-border"></span>
             </div>
