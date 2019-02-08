@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -32,8 +35,11 @@ if (isset($_COOKIE['value'])) {
     if (isset($_POST['code']) && isset($_POST['naam'])) {
         $code = $_POST['code'];
         $naam = $_POST['naam'];
+        setcookie("usercode", $code, time() + 2592000, "/");
         if (isset($_POST['remember'])) {
             setcookie("username", $naam, time() + 2592000, "/");
+        } else {
+            $_SESSION["username"] = $naam;
         }
 
         $sql = "SELECT ticket FROM tickets WHERE klas = '$code' ORDER BY ticket DESC LIMIT 1";
