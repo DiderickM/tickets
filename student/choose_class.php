@@ -20,6 +20,10 @@
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <!-- emoji -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/css/emoji.css" rel="stylesheet">
+    <!-- end emoji -->
 </head>
 <style>
 
@@ -38,7 +42,7 @@
             <!--<input type="text" name="naam" placeholder="Johan"><br>-->
 
             <div class="pos input-effect">
-                <input id="input2" name="naam" class="input effect" type="text" value="<?php echo $_COOKIE['username']; ?>" placeholder="">
+                <input data-emojiable="true" data-emoji-input="unicode" id="input2" name="naam" class="input effect" type="text" placeholder="" maxlength="60">
                 <label for="input2">Naam</label>
                 <span class="focus-border"></span>
             </div>
@@ -52,6 +56,11 @@
             </div>
         </form>
     </div>
+          <!-- ** Don't forget to Add jQuery here ** -->
+  <script src="lib/js/config.js"></script>
+  <script src="lib/js/util.js"></script>
+  <script src="lib/js/jquery.emojiarea.js"></script>
+  <script src="lib/js/emoji-picker.js"></script>
 </body>
 </html>
 <script>
@@ -77,6 +86,17 @@
         if (myInput2 && myInput2.value) {
             $('#input2').addClass("has-content");
         }
+        
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+        emojiable_selector: '[data-emojiable=true]',
+        assetsPath: 'lib/img/',
+        popupButtonClasses: 'fa fa-smile-o'
+        });
+        // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+        // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+        // It can be called as many times as necessary; previously converted input fields will not be converted again
+        window.emojiPicker.discover();
 
         function findGetParameter(parameterName) {
             var result = null,
@@ -88,10 +108,21 @@
             }
             return result;
         }   
+
+        window.setInterval(function(){
+        /// call your function here
+        var e = document.getElementById('input2');
+        window.emojiPicker.discover();
+        if(e.value != ""){
+            $('#input2').addClass("has-content");
+        }else{
+            $('#input2').removeClass("has-content");
+        }
+        }, 100);
+
         checkUrlData();
         function checkUrlData(){
             var data = findGetParameter('d');
-            console.log(data.length);
             if(data != null){
                 if(data.length > 0){
                     console.log(data);
