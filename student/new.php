@@ -62,7 +62,7 @@ if (isset($_COOKIE['value'])) {
     }
 }
 
-echo '<a href="https://www.youtube.com/watch?v=lXMskKTw3Bc"><img src="banner.png" class="ads"></a>';
+echo '<a href="ad.php" style="position:absolute;bottom:0;" target="_blank"><img src="banner.png" class="ads"></a>';
 
 ?>
 
