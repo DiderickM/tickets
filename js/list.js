@@ -36,15 +36,6 @@ function list(){
         scale: 1.1,
         paused: true });
 
-
-        // var dragger = new Draggable(element, {
-        // onDragStart: downAction,
-        // onRelease: upAction,
-        // onDrag: dragAction,
-        // cursor: "inherit",
-        // type: "y" });
-
-
         // Public properties and methods
         var sortable = {
         // dragger: dragger,

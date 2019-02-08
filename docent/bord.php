@@ -152,14 +152,6 @@ if ($result->num_rows > 0) {
 </div>
 <div id="" style="overflow:auto;padding-top:5em; height:20em;">
 <section class="container" id="myList">
-<!--
-<div class="list-item">
-    <div class="item-content">
-    <span class="order">1</span> Alpha
-    <a class="btn red" style="float: right; height: 2.5em; line-height: 1.25em;">X</a>
-    </div>
-</div>
--->
 </section>
 </div>
 <div class="center">
