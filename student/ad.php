@@ -7,7 +7,7 @@ session_start();
 include_once('../conn.php');
 
 /* The URI where we want to send the users */
-$TARGET_URI = 'https://www.youtube.com/watch?v=lXMskKTw3Bc';
+$TARGET_URI = 'https://www.versio.nl/?pa=122337mvepl';
 
 $klascode   = $_COOKIE['usercode'];
 $ip         = $_SERVER['REMOTE_ADDR'];

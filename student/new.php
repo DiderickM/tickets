@@ -68,7 +68,7 @@ if (isset($_COOKIE['value'])) {
     }
 }
 
-echo '<a href="ad.php" style="position:absolute;bottom:0;" target="_blank"><img style="width: 100vw;" src="banner.png" class="ads"></a>';
+echo '<a href="ad.php" style="position:absolute;bottom:0;" target="_blank"><img style="width: 100vw;" src="banner2.gif" class="ads"></a>';
 
 ?>
 

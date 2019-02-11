@@ -54,7 +54,7 @@
                 <label for="input3">Onthoud mijn naam</label>
             </div>
             <div class="btncenter">
-                <input style="width: 100%" class="btn blue" type="submit" value="Join!"><br>
+                <input id='submit' style="width: 100%" class="btn blue" type="submit" value="Join!"><br>
                 <a href="../" class="btn red">Terug</a>
             </div>
         </form>
@@ -111,11 +111,22 @@
             }
             return result;
         }   
+        window.emojiPicker.discover();
+
+        $('html').bind('keypress', function(e)
+        {
+            
+            if(e.keyCode == 13)
+            {
+                document.getElementById('input2').focus();
+                return false;
+            }
+        });
 
         window.setInterval(function(){
         /// call your function here
         var e = document.getElementById('input2');
-        window.emojiPicker.discover();
+        
         if(e.value != ""){
             $('#input2').addClass("has-content");
         }else{
